@@ -1,0 +1,177 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>865.6,1767.2</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="22">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="619.2,1602.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="transactionNumber" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <If Condition="[convert.ToString(in_TransactionItem.SpecificContent(&quot;Cash In&quot;)).IsNumeric]" DisplayName="Check for Cash In" sap:VirtualizedContainerService.HintSize="577.6,284.8" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Typing Cash in Value" EmptyField="True" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[convert.ToString(in_TransactionItem.SpecificContent(&quot;Cash In&quot;))]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4e7164bb-9cec-4888-ab8d-7a5d9576fa2f" InformativeScreenshot="01597bad1a6e681a703de9902067f5d3" Selector="&lt;wnd app='anytellerdemo.exe' ctrlname='frmAnyTeller' /&gt;&lt;wnd ctrlname='pnlMain' /&gt;&lt;wnd ctrlname='grpDeposit' /&gt;&lt;wnd ctrlname='txtDepositCashIn' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+      </If.Then>
+      <If.Else>
+        <Throw DisplayName="Throwing business exception" Exception="[new BusinessRuleException(&quot;Cash In value is not numeric&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+      </If.Else>
+    </If>
+    <If Condition="[convert.ToString(in_TransactionItem.SpecificContent(&quot;On US Check&quot;)).IsNumeric]" DisplayName="Check for US check" sap:VirtualizedContainerService.HintSize="577.6,284.8" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="TypingOn US Check Value" EmptyField="True" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[convert.ToString(in_TransactionItem.SpecificContent(&quot;On US Check&quot;))]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4e7164bb-9cec-4888-ab8d-7a5d9576fa2f" InformativeScreenshot="c61721a3289b60c15b64386aaf27d321" Selector="&lt;wnd app='anytellerdemo.exe' ctrlname='frmAnyTeller' /&gt;&lt;wnd ctrlname='pnlMain' /&gt;&lt;wnd ctrlname='grpDeposit' /&gt;&lt;wnd ctrlname='txtDepositOnUSCheck' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+      </If.Then>
+      <If.Else>
+        <Throw DisplayName="Throwing business exception" Exception="[new BusinessRuleException(&quot;On US check value is not numeric&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_2" />
+      </If.Else>
+    </If>
+    <If Condition="[convert.ToString(in_TransactionItem.SpecificContent(&quot;Not on US Check&quot;)).IsNumeric]" DisplayName="Check for Not on US Check" sap:VirtualizedContainerService.HintSize="577.6,284.8" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Typing Not on US Check Value" EmptyField="True" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[convert.ToString(in_TransactionItem.SpecificContent(&quot;Not on US Check&quot;))]">
+          <ui:TypeInto.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4e7164bb-9cec-4888-ab8d-7a5d9576fa2f" InformativeScreenshot="a277e70777ad65906483fcd3521bdb40" Selector="&lt;wnd app='anytellerdemo.exe' ctrlname='frmAnyTeller' /&gt;&lt;wnd ctrlname='pnlMain' /&gt;&lt;wnd ctrlname='grpDeposit' /&gt;&lt;wnd ctrlname='txtDepositNotOnUSCheck' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:TypeInto.Target>
+        </ui:TypeInto>
+      </If.Then>
+      <If.Else>
+        <Throw DisplayName="Throwing business exception" Exception="[new BusinessRuleException(&quot;Not on US Check value is not numeric&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_3" />
+      </If.Else>
+    </If>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Clicking Accept button" sap:VirtualizedContainerService.HintSize="577.6,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="32a128e6-4be8-48f4-ba9d-eca2ee05670e" InformativeScreenshot="abb02d6b7ac8514ffcba024f00fd048b" Selector="&lt;wnd app='anytellerdemo.exe' ctrlname='frmAnyTeller' /&gt;&lt;wnd ctrlname='pnlMain' /&gt;&lt;wnd ctrlname='grpDeposit' /&gt;&lt;wnd ctrlname='btnDepositAccept' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Getting trasaction number" sap:VirtualizedContainerService.HintSize="577.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_1">
+      <ui:GetValue.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c69b366d-2288-4074-b62d-79509c9ffa05" InformativeScreenshot="c8d4ab7023cd53e590d81447416a2586" Selector="&lt;wnd app='anytellerdemo.exe' ctrlname='frmAnyTeller' /&gt;&lt;wnd ctrlname='pnlMain' /&gt;&lt;wnd ctrlname='grpDeposit' /&gt;&lt;wnd ctrlname='lblDepositTransactionNo' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:GetValue.Target>
+      <ui:GetValue.Value>
+        <OutArgument x:TypeArguments="x:String">[transactionNumber]</OutArgument>
+      </ui:GetValue.Value>
+    </ui:GetValue>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="TransactioItem.Output = New Dictionary(Of String, Object)&#xD;&#xA;&#xD;&#xA;TransactioItem.Output.Add(&quot;Transaction No&quot;,TransactionNo)" DisplayName="Invoke code to update transaction item output" sap:VirtualizedContainerService.HintSize="577.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InOutArgument x:TypeArguments="ui:QueueItem" x:Key="TransactioItem">
+          <mva:VisualBasicReference x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
+        </InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="TransactionNo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="transactionNumber" />
+        </InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+  </Sequence>
+</Activity>
