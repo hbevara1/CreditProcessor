@@ -7,7 +7,7 @@ pipeline {
             version = bat (script : "type project.json|jq .projectVersion", returnStdout:true)
             }
          steps {
-            echo "%env.version%"
+            echo "%{env.version}"
          }
       }
    }
