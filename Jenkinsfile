@@ -2,12 +2,12 @@ pipeline {
    agent any
 
    stages {
-      stage('version') {
+      stage('Hello') {
           environment {
             version = bat (script : "type project.json|jq .projectVersion", returnStdout:true)
-             }
+            }
          steps {
-            echo %env.version%
+            echo '%env.version%'
          }
       }
    }
