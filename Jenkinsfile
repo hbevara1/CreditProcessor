@@ -3,10 +3,10 @@ pipeline {
    stages {
       stage('build') {
          environment {
-            input = bat (script : "type project.json|jq .projectVersion", returnStdout:true)
+            version = bat (script : "type project.json|jq .projectVersion", returnStdout:true)
              }
             steps {
-            echo env.input
+            UiPathPack outputPath: '${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${env.version}', projectJsonPath: '${WORKSPACE}', version: CustomVersion('${env.version}')
       }
    }
 }
