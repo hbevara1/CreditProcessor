@@ -7,7 +7,7 @@ pipeline {
              }
             steps {
                echo %env.version%
-      }
+                  }
+       }
    }
-}
 }   
