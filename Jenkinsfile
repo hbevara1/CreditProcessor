@@ -1,10 +1,10 @@
 pipeline {
    agent any
    stages {
-      environment {
-      input = bat (script : "type package.json|jq .projectVersion", returnStdout:true)
-   }
       stage('build') {
+         environment {
+      input = bat (script : "type project.json|jq .projectVersion", returnStdout:true)
+   }
             steps {
                echo %env.input%
             //UiPathPack outputPath: '${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${version}', projectJsonPath: '${WORKSPACE}', version: CustomVersion('${version}')
