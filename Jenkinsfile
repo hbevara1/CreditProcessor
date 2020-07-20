@@ -9,6 +9,5 @@ pipeline {
                echo %env.version%
             //UiPathPack outputPath: '${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${env.version}', projectJsonPath: '${WORKSPACE}', version: CustomVersion('${env.version}')
             }
-        }
      }
 }   
