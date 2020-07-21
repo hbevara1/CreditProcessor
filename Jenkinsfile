@@ -8,11 +8,7 @@ pipeline {
              version = '1.0.1'
             }
          steps {
-            UiPathPack (
-          outputPath: "${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${BUILD_NUMBER}",
-          projectJsonPath: "${WORKSPACE}",
-          version: [$class: 'AutoEntry']
-        )
+           UiPathPack (outputPath: '${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${BUILD_NUMBER}', projectJsonPath: '${WORKSPACE}', version: CustomVersion('${BUILD_NUMBER}'))
          }
       }
    }
