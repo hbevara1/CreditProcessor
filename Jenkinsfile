@@ -3,19 +3,9 @@ pipeline {
 
    stages {
       stage('build') {
-         when {
-                branch 'master'
-            }
          steps {
             UiPathPack (outputPath: 'Output', projectJsonPath: 'project.json', version: CurrentVersion())
-         }
-      }
-      stage('deploy') {
-         when {
-                branch 'dev'
-            }
-         steps {
-           echo "the barnch is dev"
+            UiPathDeploy (credentials: UserPass('dc9157d0-7a1e-48e9-900e-882bba45fe7e'), environments: 'dev', folderName: 'Default', orchestratorAddress: 'https://rpa.com:8443/', orchestratorTenant: 'Default', packagePath: 'output')
          }
       }
    }
