@@ -9,7 +9,7 @@ pipeline {
             }
          steps {
            //UiPathPack (outputPath: '${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${env.version}', projectJsonPath: '${WORKSPACE}\\multi_branch_pipeline_master\\project.json', version: CustomVersion('${env.version}'))
-            UiPathPack (outputPath: 'Output\\${version}', projectJsonPath: 'project.json', version: CustomVersion('${version}'))
+            UiPathPack (outputPath: 'Output\\${version}', projectJsonPath: 'multi_branch_pipeline_master\\project.json', version: CustomVersion('${version}'))
          }
       }
       stage('deploy') {
