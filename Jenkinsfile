@@ -8,7 +8,7 @@ pipeline {
              //version = '5.0.1'
             }
          steps {
-            UiPathPack (outputPath: '${WORKSPACE}\\Output', projectJsonPath: '${WORKSPACE}\\project.json', version: CurrentVersion())
+            UiPathPack (outputPath: '${WORKSPACE}\\Output', projectJsonPath: '${env.WORKSPACE}\\project.json', version: CurrentVersion())
          }
       }
       //stage('deploy') {
