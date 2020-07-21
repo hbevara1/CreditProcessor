@@ -10,7 +10,7 @@ pipeline {
             UiPathPack (
           outputPath: "${JENKINS_HOME}\\jobs\\${JOB_NAME}\\builds\\${env.version}",
           projectJsonPath: "${WORKSPACE}",
-          version: [version: "${env.version}"]
+          version: [$class: 'ManualVersionEntry', version: "${env.version}"]
         )
          }
       }
